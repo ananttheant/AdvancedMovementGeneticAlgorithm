@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿#define UseEthan
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +22,9 @@ public class Brain : MonoBehaviour
 
     public float timeWalking;
 
+    public GameObject EthanPrefab;
+    GameObject ethan;
+
     /// <summary>
     /// Link to DNA
     /// </summary>
@@ -32,6 +37,13 @@ public class Brain : MonoBehaviour
 
     bool alive = true;
     bool seeGround = true;
+
+#if UseEthan
+    private void OnDestroy()
+    {
+        Destroy(ethan);
+    }
+#endif
 
     /// <summary>
     /// If we end up hitting the dead zone which is the black part, we die
@@ -63,6 +75,18 @@ public class Brain : MonoBehaviour
 
         timeAlive = 0;
         alive = true;
+
+
+#if UseEthan
+        GetComponent<MeshRenderer>().enabled = false;
+        eyes.GetComponent<MeshRenderer>().enabled = false;
+
+        ethan = Instantiate(EthanPrefab, this.transform.position, this.transform.rotation);
+        ethan.GetComponent<UnityStandardAssets.Characters.ThirdPerson.AICharacterControl>().target = transform;
+#else
+        GetComponent<MeshRenderer>().enabled = true;
+        eyes.GetComponent<MeshRenderer>().enabled = true;
+#endif
     }
 
     private void Update()

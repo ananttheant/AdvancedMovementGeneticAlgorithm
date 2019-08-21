@@ -108,6 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeAlive: 0
+  timeWalking: 0
+  EthanPrefab: {fileID: 113348, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
   eyes: {fileID: 9005065694345817829}
 --- !u!54 &8676378760040233527
 Rigidbody:

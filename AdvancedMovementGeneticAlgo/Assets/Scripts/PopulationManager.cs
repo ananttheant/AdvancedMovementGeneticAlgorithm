@@ -9,6 +9,8 @@ public class PopulationManager : MonoBehaviour
 
     public int populationSize = 50;
 
+    public bool useMutation = true;
+
     List<GameObject> population = new List<GameObject>();
         
     //Time that has elapsed
@@ -71,7 +73,7 @@ public class PopulationManager : MonoBehaviour
         Brain _brain = offspring.GetComponent<Brain>();
 
         _brain.Init();
-        if (Random.Range(0, 100) == 1)
+        if (Random.Range(0, 100) == 1 && useMutation)
         {
             _brain.dna.Mutate();
         }
